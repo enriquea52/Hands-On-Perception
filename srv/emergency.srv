@@ -1,0 +1,6 @@
+int32 signal
+float64 x
+float64 y
+float64 z
+---
+bool avoided

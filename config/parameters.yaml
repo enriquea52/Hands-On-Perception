@@ -1,0 +1,15 @@
+tbot_points_topic: $(arg points_topic)
+
+pub_risk_pointcloud_topic: /risk_pointcloud
+
+higher_risk_obs_topic: rrp
+
+lowest_risk_obs_topic: brtt
+
+emergency_service: emergency
+
+tbot_odometry_topic: $(arg tbot_name)/odom
+
+safety_vel_cmd_topic: $(arg tbot_name)/cmd_vel_mux/input/safety_controller
+
+tbot_rplidar_scan_topic: $(arg tbot_name)/rplidar/scan

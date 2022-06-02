@@ -1,0 +1,29 @@
+<launch>
+
+    <!--node for launching the small house world simulation-->
+    <include file="$(find small_house_world)/launch/small_house.launch" />
+
+    <!--node for launching the turtlebot model simulation-->
+    <include file="$(find turtlebot_desktop)/launch/sim_start.launch" />
+
+    <!-- Loading parameters required for the pkg -->
+    <arg name="tbot_name" default="/turtlebot"/>
+    <arg name="points_topic" default="$(arg tbot_name)/realsense_d435i/points"/>
+
+    <rosparam file="$(find perception)/config/parameters.yaml" command="load" subst_value="true"/>
+
+    <!--node for launching the teleop keyboard controller-->
+    <include file="$(find turtlebot_desktop)/launch/keyboard_teleop.launch" >
+      <arg name="turtlebot_name" value="$(arg tbot_name)" />
+    </include>
+
+    <!--launching the bounding_box node for representing the chassiss of the robot-->
+    <node name="bounding_box" pkg="perception" type="bounding_box.py" />
+
+    <!--launching the risk assessment node-->
+    <node name="risk_assessment" pkg="perception" type="risk_assessment_node" output="screen" launch-prefix="xterm -e"/>
+
+    <!--launching the bounding_box node for representing the chassiss of the robot-->
+    <node name="obstacle_avoidance" pkg="perception" type="obst_avoidance.py" output="screen" launch-prefix="xterm -e"/>
+
+</launch>

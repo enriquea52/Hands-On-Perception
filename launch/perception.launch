@@ -1,0 +1,22 @@
+<launch>
+
+    <!-- Loading parameters required for the pkg -->
+    <arg name="tbot_name" default="/turtlebot2/>
+    <arg name="points_topic" default="/perception_pointcloud"/>
+    <rosparam file="$(find perception)/config/parameters.yaml" command="load" subst_value="true"/>
+
+    <!--node for launching the teleop keyboard controller-->
+    <!-- <include file="$(find turtlebot_desktop)/launch/keyboard_teleop.launch" >
+      <arg name="turtlebot_name" value="$(arg tbot_name)" />
+    </include> -->
+
+    <!--launching the bounding_box node for representing the chassiss of the robot-->
+    <node name="bounding_box" pkg="perception" type="bounding_box.py" />
+
+    <!--launching the risk assessment node-->
+    <node name="risk_assessment" pkg="perception" type="risk_assessment_node" output="screen" launch-prefix="xterm -e"/>
+
+    <!--launching the bounding_box node for representing the chassiss of the robot-->
+    <node name="obstacle_avoidance" pkg="perception" type="obst_avoidance.py" output="screen" launch-prefix="xterm -e"/>
+
+</launch>
