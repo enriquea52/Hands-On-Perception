@@ -1,6 +1,5 @@
-# Pose Based EKF SLAM (PEKSLAM) Using LiDAR Scans and ICP 
+# Collision Risk Assessment Using an Intel Realsense D435i RGB-D Camera for Obstacle Avoidance
 
-**This project belongs to the Universitat de Girona. It is forbidden to publish this project or any derivative work in any public repository.**
 
 Prototype and main components:
 
